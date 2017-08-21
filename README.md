@@ -1,24 +1,24 @@
-# README
+# IIC2113 Api
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[![circleciB]][circleciL]
 
-Things you may want to cover:
+- Production http://iic2113-api.herokuapp.com/
+- Staging: http://iic2113-api-staging.herokuapp.com/
 
-* Ruby version
+### Development
 
-* System dependencies
+Copy and run this script
 
-* Configuration
+```bash
+git clone https://github.com/negebauer/IIC2113-Api.git Api
+cd api
+bundle install
+rake db:create
+rake db:schema:load
+rails s
+```
 
-* Database creation
+<!-- Badges -->
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+[circleciL]:https://circleci.com/gh/negebauer/IIC2113-Api
+[circleciB]:https://circleci.com/gh/negebauer/IIC2113-Api.svg?style=svg&circle-token=ca1e7d6025ff39eff6062d20b26fb6d4745359d8

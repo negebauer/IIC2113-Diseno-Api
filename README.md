@@ -18,6 +18,13 @@ rake db:schema:load
 rails s
 ```
 
+Usefull comands
+
+```bash
+# Run linter and fix
+rubocop -Ra
+```
+
 <!-- Badges -->
 
 [circleciL]:https://circleci.com/gh/negebauer/IIC2113-Api

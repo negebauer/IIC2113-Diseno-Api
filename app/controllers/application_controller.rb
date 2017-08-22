@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::API
 
-  def main
-    render json: {on: true}
+  def index
+    @on = true
+    @timestamp = DateTime.now.strftime("%d/%m/%Y %H:%M")
   end
 
 end

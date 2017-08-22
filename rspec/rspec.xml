@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="rspec" tests="1" skipped="0" failures="0" errors="0" time="0.022260" timestamp="2017-08-22T16:29:42-03:00" hostname="MacBook-Pro-de-Nico.local">
+<properties>
+<property name="seed" value="30822"/>
+</properties>
+<testcase classname="spec.controllers.application_controller_spec" name="ApplicationController GET index renders the index template" file="./spec/controllers/application_controller_spec.rb" time="0.019982"></testcase>
+</testsuite>

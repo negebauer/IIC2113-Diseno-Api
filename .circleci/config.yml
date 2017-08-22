@@ -1,7 +1,3 @@
-# Javascript Node CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
-#
 version: 2
 jobs:
   build:
@@ -20,8 +16,8 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "Gemfile.lock" }}
-          - v1-dependencies-
+          - v1-cache-{{ checksum "Gemfile.lock" }}
+          - v1-cache-
 
       - run:
           name: install dependencies
@@ -32,26 +28,22 @@ jobs:
       - save_cache:
           paths:
             - vendor/bundle
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+          key: v1-cache-{{ checksum "Gemfile.lock" }}
 
       - run: bundle exec rake db:reset
 
-      # - run:
-      #     name: run tests
-      #     command: |
-      #       mkdir /tmp/test-results
-      #       TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
-      #       bundle exec rspec --format progress \
-      #                       --format RspecJunitFormatter \
-      #                       --out /tmp/test-results/rspec.xml \
-      #                       --format progress \
-      #                       "${TEST_FILES}"
-      #
-      # - store_test_results:
-      #     path: /tmp/test-results
-      # - store_artifacts:
-      #     path: /tmp/test-results
-      #     destination: test-results
+      - run:
+          name: run tests
+          command: bundle exec rspec --format RspecJunitFormatter --out rspec/rspec.xml
+
+      - store_test_results:
+          path: rspec/
+      - store_artifacts:
+          path: rspec/
+          destination: rspec
+      - store_artifacts:
+          path: ./coverage
+          destination: coverage
   deploy:
     docker:
       - image: circleci/ruby:2.4.1-node-browsers
@@ -60,7 +52,6 @@ jobs:
       - checkout
       - run: wget -qO- https://cli-assets.heroku.com/install-ubuntu.sh | sh
       - run: bash .circleci/setup-heroku.sh $CIRCLE_BRANCH
-      # - run: bash .circleci/setup-env.sh $CIRCLE_BRANCH
       - add_ssh_keys:
           fingerprints:
             - "48:a0:87:54:ca:75:32:12:c6:9e:a2:77:a4:7a:08:a4"

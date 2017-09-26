@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe SessionsControllerController, type: :controller do
+RSpec.describe SessionsController, type: :controller do
   describe 'POST #create' do
     it 'returns http success' do
-      post :create
+      post :create, format: :json
       expect(response).to have_http_status(:success)
     end
   end

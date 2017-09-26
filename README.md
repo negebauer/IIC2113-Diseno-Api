@@ -41,8 +41,8 @@ rubocop -Ra
 
 <!-- Badges -->
 
-[circleciL]:https://circleci.com/gh/negebauer/IIC2113-Api
-[circleciB]:https://circleci.com/gh/negebauer/IIC2113-Api.svg?style=svg&circle-token=ca1e7d6025ff39eff6062d20b26fb6d4745359d8
+[circleciL]:https://circleci.com/gh/negebauer/IIC2113-Diseno-Api
+[circleciB]:https://circleci.com/gh/negebauer/IIC2113-Diseno-Api.svg?style=svg&circle-token=ca1e7d6025ff39eff6062d20b26fb6d4745359d8
 
 [styleL]:https://github.com/bbatsov/rubocop
 [styleB]:https://img.shields.io/badge/code%20style-rubocop-brightgreen.svg?style=flat

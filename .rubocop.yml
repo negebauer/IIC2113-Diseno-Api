@@ -1,0 +1,9 @@
+Metrics/ModuleLength:
+  Exclude:
+    - "**/*_spec.rb"
+    - "db/schema.rb"
+
+Metrics/BlockLength:
+  Exclude:
+    - "**/*_spec.rb"
+    - "db/schema.rb"

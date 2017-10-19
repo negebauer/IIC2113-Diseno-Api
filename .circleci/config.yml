@@ -56,11 +56,6 @@ jobs:
       - deploy:
           name: Deploy to Heroku
           command: git push heroku $CIRCLE_BRANCH:master
-      - run:
-          name: Migrations
-          command: |
-            ssh-keyscan -H heroku.com >> ~/.ssh/known_hosts
-            heroku run rake db:migrate
 
 workflows:
   version: 2

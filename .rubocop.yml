@@ -2,8 +2,23 @@ Metrics/ModuleLength:
   Exclude:
     - "**/*_spec.rb"
     - "db/schema.rb"
+    - "db/**"
 
 Metrics/BlockLength:
   Exclude:
     - "**/*_spec.rb"
     - "db/schema.rb"
+    - "db/migrate/*"
+    - "db/**"
+
+Metrics/MethodLength:
+  Exclude:
+    - "**/*_spec.rb"
+    - "db/schema.rb"
+    - "db/migrate/*"
+    - "db/**"
+
+Metrics/LineLength:
+  Max: 140
+Documentation:
+    Enabled: false

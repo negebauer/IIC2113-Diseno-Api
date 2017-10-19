@@ -1,10 +1,10 @@
-require 'rails_helper'
+# require 'rails_helper'
 
-RSpec.describe ApplicationController do
-  describe 'GET index' do
-    it 'renders the index template' do
-      get :index, format: :json
-      expect(response).to render_template('index')
-    end
-  end
-end
+# RSpec.describe ApplicationController do
+#   describe 'GET index' do
+#     it 'renders the index template' do
+#       get :index, format: :json
+#       expect(response).to render_template('index')
+#     end
+#   end
+# end

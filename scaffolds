@@ -1,0 +1,27 @@
+rails g scaffold user mail:string name:string
+rails g scaffold experience name:string description:text date:date user:references
+rails g scaffold methood name:string description:text video:string link:string
+
+rails g scaffold selection applicable:text usefulness:text relevance:text feasibility:text experience:references methood:references
+rails g scaffold plan  reasons:text period:text name:string objetive:text
+    rails g scaffold member name:string role:string plan:references
+    rails g scaffold place where:text indentify:text plan:references
+    rails g scaffold resource name:string support:text disponibility:boolean plan:references
+    rails g scaffold other item:string how:text plan:references
+
+rails g scaffold selection_plan plan:references selection:references
+
+
+
+
+rails g scaffold diffusion before:text during:text after:text plan:references
+
+
+rails g scaffold implement plan:references
+    rails g scaffold blog implement:references day_before:date change:text day_after:date obs:text advances:text obstacles:text ideas:text
+rails g scaffold evaluation implement:references
+    rails g scaffold question conect:text choice:text planing:text implements:text evaluation:references
+    rails g scaffold suggestion evaluation:references result:text
+    rails g scaffold survey evaluation:references result:text
+    rails g scaffold satisfaction evaluation:references
+rails g scaffold comunicate evaluation:references

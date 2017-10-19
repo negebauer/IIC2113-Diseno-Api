@@ -14,20 +14,10 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
-
-    if @user.save
-      render :show, status: :created, location: @user
-    else
-      render json: @user.errors, status: :unprocessable_entity
-    end
-  end
-
-  # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
-  def update
-    if @user.update(user_params)
-      render :show, status: :ok, location: @user
+    user = User.new(user_params)
+    if user.save
+      allow_token_to_be_used_only_once_for(user)
+      send_auth_token_for_valid_login_of(user)
     else
       render json: @user.errors, status: :unprocessable_entity
     end
@@ -48,6 +38,6 @@ class UsersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    params.require(:user).permit(:mail, :name)
+    params.permit(:mail, :name, :password, :password_confirmation)
   end
 end

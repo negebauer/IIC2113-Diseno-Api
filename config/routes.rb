@@ -17,5 +17,8 @@ Rails.application.routes.draw do
   resources :selections
   resources :methoods
   resources :experiences
-  resources :users
+  resources :users, except: [:create]
+  post '/signup', to: 'users#create'
+  post   '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
 end

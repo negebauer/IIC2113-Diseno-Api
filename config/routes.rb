@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   resources :experiences
   post '/experiences/:id/users' => 'experiences#invite'
   resources :users, except: [:create]
+  get '/profile' => 'profile#index'
   post '/signup', to: 'users#create'
   post   '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'

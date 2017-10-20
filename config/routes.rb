@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :selections
   resources :methoods
   resources :experiences
+  post '/experiences/:id/users' => 'experiences#invite'
   resources :users, except: [:create]
   post '/signup', to: 'users#create'
   post   '/login', to: 'sessions#create'

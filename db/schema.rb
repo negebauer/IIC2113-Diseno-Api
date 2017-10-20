@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_171_019_212_707) do
+ActiveRecord::Schema.define(version: 20_171_019_220_237) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -56,10 +56,17 @@ ActiveRecord::Schema.define(version: 20_171_019_212_707) do
     t.string 'name'
     t.text 'description'
     t.date 'date'
-    t.bigint 'user_id'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
-    t.index ['user_id'], name: 'index_experiences_on_user_id'
+  end
+
+  create_table 'experiences_users', force: :cascade do |t|
+    t.bigint 'user_id'
+    t.bigint 'experience_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['experience_id'], name: 'index_experiences_users_on_experience_id'
+    t.index ['user_id'], name: 'index_experiences_users_on_user_id'
   end
 
   create_table 'implements', force: :cascade do |t|
@@ -193,7 +200,8 @@ ActiveRecord::Schema.define(version: 20_171_019_212_707) do
   add_foreign_key 'comunicates', 'evaluations'
   add_foreign_key 'diffusions', 'plans'
   add_foreign_key 'evaluations', 'implements'
-  add_foreign_key 'experiences', 'users'
+  add_foreign_key 'experiences_users', 'experiences'
+  add_foreign_key 'experiences_users', 'users'
   add_foreign_key 'implements', 'plans'
   add_foreign_key 'members', 'plans'
   add_foreign_key 'others', 'plans'

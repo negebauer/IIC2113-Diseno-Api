@@ -179,6 +179,7 @@ TODO
   {
     name: 'Mi segunda experiencia',
     description: 'En esta experiencia...',
+    date: '2016-08-16T23:13:05.908Z',
   }
   ```
 
@@ -229,7 +230,7 @@ TODO
 
   ```javascript
   {
-    user_ids: "2,3"
+    user_mail: "fnmendez@uc.cl"
   }
   ```
 

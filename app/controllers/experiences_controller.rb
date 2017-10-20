@@ -12,10 +12,8 @@ class ExperiencesController < ApplicationController
   # POST /experiences/1/users
   def invite
     @experience = Experience.find(params[:id])
-    @users = User.where(id: params[:user_ids].split(',').map(&:to_i))
-    @users.each do |user|
-      @experience.users.push(user) unless @experience.users.include?(user)
-    end
+    @user = User.find_by(mail: params[:user_mail])
+    @experience.users.push(@user) unless @experience.users.include?(@user)
     render json: @experience, include: { users: { only: %i[name mail] } }, except: %i[created_at updated_at]
   end
 

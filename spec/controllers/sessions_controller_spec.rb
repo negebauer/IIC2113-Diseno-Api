@@ -6,6 +6,11 @@ RSpec.describe SessionsController, type: :controller do
       name: 'Frank', mail: 'frank@uc.cl', password: '123123', password_confirmation: '123123'
     }
   end
+  let(:other_valid_user_attributes) do
+    {
+      name: 'Otheruser Fortest', mail: 'm1a2i3l@uc.cl', password: '123123', password_confirmation: '123123'
+    }
+  end
   let(:login_params) do
     { mail: 'frank@uc.cl', password: '123123' }
   end
@@ -29,11 +34,11 @@ RSpec.describe SessionsController, type: :controller do
     end
   end
 
-  describe 'POST #destroy' do
+  describe 'DELETE #destroy' do
     it 'logout correctly' do
-      user = User.create! valid_user_attributes
+      user = User.create! other_valid_user_attributes
       allow(controller).to receive_messages(authenticate_token: user)
-      post :destroy
+      delete :destroy
       expect(response).to have_http_status(:success)
     end
   end

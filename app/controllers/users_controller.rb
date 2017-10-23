@@ -1,16 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show update destroy]
 
-  # GET /users
-  # GET /users.json
-  def index
-    @users = User.all
-  end
-
-  # GET /users/1
-  # GET /users/1.json
-  def show; end
-
   # POST /users
   # POST /users.json
   def create
@@ -19,7 +9,7 @@ class UsersController < ApplicationController
       allow_token_to_be_used_only_once_for(user)
       send_auth_token_for_valid_login_of(user)
     else
-      render json: @user.errors, status: :unprocessable_entity
+      render json: user.errors, status: :unprocessable_entity
     end
   end
 

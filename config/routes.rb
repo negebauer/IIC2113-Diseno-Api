@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   resources :methoods
   resources :experiences
   post '/experiences/:id/users' => 'experiences#invite'
-  resources :users, except: [:create]
+  resources :users, except: %i[create index show]
   get '/profile' => 'profile#index'
   post '/signup', to: 'users#create'
   post   '/login', to: 'sessions#create'

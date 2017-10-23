@@ -13,8 +13,12 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    logout
-    render json: { message: 'Logged out successfully' }, status: :ok
+    if current_user
+      logout
+      render json: { message: 'Logged out successfully' }, status: :ok
+    else
+      render json: { message: 'Could not logout' }, status: :not_acceptable
+    end
   end
 
   private

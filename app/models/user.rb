@@ -5,6 +5,9 @@ class User < ApplicationRecord
   has_secure_password
   has_secure_token
 
+  validates :name, :mail, presence: true
+  validates :mail, uniqueness: true
+
   def invalidate_token
     update(token: nil)
   end

@@ -19,6 +19,7 @@ group :development, :test do
   # debugger console
   gem 'awesome_print'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'mechanize'
   gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 3.6'
   gem 'rspec_junit_formatter'

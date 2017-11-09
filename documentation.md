@@ -11,6 +11,7 @@ TODO
 - [Usage](#usage)
   - [Accounts And Sessions](#accounts-and-sessions)
   - [Experiences](#experiences)
+  - [Methodologies](#methodologies)
 
 ## Usage
 
@@ -277,4 +278,63 @@ TODO
     { message: 'error-message' }
     ```
 
+---
+
+### Methodologies
+#### List of updated methodologies
+
+- Route: `GET` `/methoods`
+
+- Headers:
+  - Content-Type: `application/json`
+
+- Success Response:
+
+  - Status: 200
+  - Example Content:
+
+    ```javascript
+    [
+      {
+        id: 1,
+        name: "Cultura de aprendizaje colaborativo",
+        url: "https://www.escuelaenmovimiento.cl/metodologias-innovadoras/cultura-de-aprendizaje-colaborativo"
+    },
+    {
+        id: 2,
+        name: "Ambientes de Aprendizaje Auto-organizado",
+        url: "https://www.escuelaenmovimiento.cl/metodologias-innovadoras/ambientes-de-aprendizaje-auto-organizado"
+    },
+        ...
+    ]
+    ```
+
+---
+#### Get methodology
+
+- Route: `GET` `/methoods/:id`
+
+- Headers:
+  - Content-Type: `application/json`
+
+- Success Response:
+
+  - Status: 200
+  - Example Content:
+
+    ```javascript
+    [
+      name: "Methodology name",
+      url: "https://www.escuelaenmovimiento.cl/metodologias-innovadoras/metodologia-especifica",
+      id: 1
+    ]
+    ```
+- Error Response:
+
+  - Code: 404
+  - Content:
+
+    ```javascript
+    { message: 'Method not found' }
+    ```
 ---

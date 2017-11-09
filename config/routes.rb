@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   root to: 'application#index'
-
   resources :comunicates
   resources :satisfactions
   resources :surveys
@@ -17,11 +16,11 @@ Rails.application.routes.draw do
   resources :members
   resources :plans
   resources :selections
-  resources :methoods
+  resources :methoods, only: %i[index show]
   resources :experiences
   post '/experiences/:id/users' => 'experiences#invite'
   resources :users, except: %i[create index show]
-  get '/profile' => 'profile#index'
+  get '/profile', to: 'profile#index'
   post '/signup', to: 'users#create'
   post   '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'

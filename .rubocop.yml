@@ -10,6 +10,7 @@ Metrics/BlockLength:
     - "db/schema.rb"
     - "db/migrate/*"
     - "db/**"
+    - "config/routes.rb"
 
 Metrics/MethodLength:
   Exclude:
@@ -25,4 +26,3 @@ Documentation:
 
 Rails/HasAndBelongsToMany:
   Enabled: false
-    

@@ -337,4 +337,155 @@ TODO
     ```javascript
     { message: 'Method not found' }
     ```
+      {
+        id: 1,
+        name: 'Mi primera experiencia',
+        date: '2016-08-16T23:13:05.908Z',
+        description: 'En esta experiencia...',
+        users: [
+          {
+            id: 1,
+            name: 'Oscar Rios',
+            username: 'orrios',
+            created_at: '2016-08-16T23:13:05.908Z'
+          }, {
+            id: 2,
+            name: 'Nicolas Gebauer',
+            phone_number: 'negebauer',
+            created_at: '2016-09-16T23:13:15.908Z'
+          }
+        ]
+      },
+        ...
+    ]
+    ```
+---
+#### Delete selection
+
+- Route: `DELETE` `experiences/:experience_id/selection/:id`
+
+- Headers:
+  - Authorization: `Token token=your-session-token`
+  - Content-Type: `application/json`
+
+- Success Response:
+
+  - Status: 200
+  - Content:
+
+    ```javascript
+    { message: 'Selection deleted successfully' }
+    ```
+
+- Error Response:
+
+  - Code: 406
+  - Content:
+
+    ```javascript
+    { message: 'Could not delete Selection' }
+    ```
+---
+### Selection
+#### List of methodologies selected on an experience
+
+- Route: `GET` `/experiences/:experience_id/selections`
+
+- Headers:
+  - Authorization: `Token token=your-session-token`
+  - Content-Type: `application/json`
+
+- Success Response:
+
+  - Status: 200
+  - Example Content:
+
+    ```javascript
+    [
+      {
+        "id": 10,
+        "name": "Aprendizaje basado en proyectos interdisciplinarios",
+        "description": null,
+        "video": null,
+        "link": "https://www.escuelaenmovimiento.cl/metodologias-innovadoras/aprendizaje-basado-en-proyectos-interdisciplinarios",
+        "created_at": "2017-11-09T14:56:11.665Z",
+        "updated_at": "2017-11-09T14:56:16.807Z"
+      },
+      {
+        "id": 11,
+        "name": "Cultura de aprendizaje colaborativo",
+        "description": null,
+        "video": null,
+        "link": "https://www.escuelaenmovimiento.cl/metodologias-innovadoras/cultura-de-aprendizaje-colaborativo",
+        "created_at": "2017-11-09T14:56:16.669Z",
+        "updated_at": "2017-11-09T14:56:16.758Z"
+      }
+    ]
+    ```
+
+---
+#### Create new selection for an experience
+
+- Route: `POST` `/experiences/:experience_id/selections`
+
+- Headers:
+  - Authorization: `Token token=your-session-token`
+  - Content-Type: `application/json`
+
+- Success Response:
+
+  - Status: 200
+  - Example Content:
+
+    ```javascript
+    [
+      {
+        id: 1,
+        name: 'Mi primera experiencia',
+        date: '2016-08-16T23:13:05.908Z',
+        description: 'En esta experiencia...',
+        users: [
+          {
+            id: 1,
+            name: 'Oscar Rios',
+            username: 'orrios',
+            created_at: '2016-08-16T23:13:05.908Z'
+          }, {
+            id: 2,
+            name: 'Nicolas Gebauer',
+            phone_number: 'negebauer',
+            created_at: '2016-09-16T23:13:15.908Z'
+          }
+        ]
+      },
+        ...
+    ]
+    ```
+---
+#### Delete selection
+
+- Route: `DELETE` `experiences/:experience_id/selection/:id`
+
+- Headers:
+  - Authorization: `Token token=your-session-token`
+  - Content-Type: `application/json`
+
+- Success Response:
+
+  - Status: 200
+  - Content:
+
+    ```javascript
+    { message: 'Selection deleted successfully' }
+    ```
+
+- Error Response:
+
+  - Code: 406
+  - Content:
+
+    ```javascript
+    { message: 'Could not delete Selection' }
+    ```
+
 ---

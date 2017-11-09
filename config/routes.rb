@@ -15,9 +15,10 @@ Rails.application.routes.draw do
   resources :places
   resources :members
   resources :plans
-  resources :selections
   resources :methoods, only: %i[index show]
-  resources :experiences
+  resources :experiences do
+    resources :selections
+  end
   post '/experiences/:id/users' => 'experiences#invite'
   resources :users, except: %i[create index show]
   get '/profile', to: 'profile#index'

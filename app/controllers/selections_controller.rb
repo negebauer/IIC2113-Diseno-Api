@@ -4,13 +4,8 @@ class SelectionsController < ApplicationController
   before_action :set_selection, only: %i[show update destroy]
 
   def index
-    @methods = @experience.methoods.distinct
-    render json: @methods, status: :ok,
-           except: %i[created_at updated_at video description]
-  end
-
-  def show
-    render json: @selection, status: :ok
+    @selections = @experience.selections
+    render json: @selections, status: :ok
   end
 
   def create

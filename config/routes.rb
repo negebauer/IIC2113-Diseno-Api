@@ -17,7 +17,8 @@ Rails.application.routes.draw do
   resources :plans
   resources :methoods, only: %i[index show]
   resources :experiences do
-    resources :selections
+    resources :selections, except: %i[show]
+    get '/methodologies', to: 'methoods#selected', as: 'methodologies'
   end
   post '/experiences/:id/users' => 'experiences#invite'
   resources :users, except: %i[create index show]

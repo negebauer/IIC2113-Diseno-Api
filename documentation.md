@@ -389,7 +389,7 @@ TODO
 ### Selection
 #### List of methodologies selected on an experience
 
-- Route: `GET` `/experiences/:experience_id/selections`
+- Route: `GET` `/experiences/:experience_id/methodologies`
 
 - Headers:
   - Authorization: `Token token=your-session-token`
@@ -419,6 +419,47 @@ TODO
         "link": "https://www.escuelaenmovimiento.cl/metodologias-innovadoras/cultura-de-aprendizaje-colaborativo",
         "created_at": "2017-11-09T14:56:16.669Z",
         "updated_at": "2017-11-09T14:56:16.758Z"
+      }
+    ]
+    ```
+
+---
+#### List of selections of an experience
+
+- Route: `GET` `/experiences/:experience_id/selections`
+
+- Headers:
+  - Authorization: `Token token=your-session-token`
+  - Content-Type: `application/json`
+
+- Success Response:
+
+  - Status: 200
+  - Example Content:
+
+    ```javascript
+    [
+      {
+        "id": 1,
+        "applicable": "Si",
+        "usefulness": "Not so much",
+        "relevance": "a lot",
+        "feasibility": null,
+        "experience_id": 2,
+        "methood_id": 10,
+        "created_at": "2017-11-09T20:57:25.304Z",
+        "updated_at": "2017-11-09T20:57:25.304Z"
+      },
+      {
+        "id": 15,
+        "applicable": "No",
+        "usefulness": "Very useful",
+        "relevance": "Important for our experience",
+        "feasibility": "feasibility of the selection",
+        "experience_id": 2,
+        "methood_id": 11,
+        "created_at": "2017-11-09T21:48:13.953Z",
+        "updated_at": "2017-11-09T21:48:13.953Z"
       }
     ]
     ```
@@ -462,6 +503,42 @@ TODO
     ]
     ```
 ---
+#### Update selection for an experience
+
+- Route: `PATCH` `/experiences/:experience_id/selections/:id`
+
+- Headers:
+  - Authorization: `Token token=your-session-token`
+  - Content-Type: `application/json`
+
+- Example Body:
+
+  ```javascript
+  {
+    applicable: "Not sure",
+    usefulness: "indispensable"
+  }
+  ```
+
+- Success Response:
+
+  - Status: 200
+  - Example Content:
+
+    ```javascript
+    {
+      "id": 15,
+      "applicable": "Not sure",
+      "usefulness": "indispensable",
+      "relevance": "Important for our experience",
+      "feasibility": "feasibility of the selection",
+      "experience_id": 2,
+      "methood_id": 11,
+      "created_at": "2017-11-09T21:48:13.953Z",
+      "updated_at": "2017-11-09T21:48:13.953Z"
+    }
+    ```
+---
 #### Delete selection
 
 - Route: `DELETE` `experiences/:experience_id/selection/:id`
@@ -487,5 +564,4 @@ TODO
     ```javascript
     { message: 'Could not delete Selection' }
     ```
-
 ---

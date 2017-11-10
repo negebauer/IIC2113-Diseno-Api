@@ -14,6 +14,7 @@ class ExperiencesController < ApplicationController
     @experience = Experience.find(params[:id])
     @user = User.find_by(mail: params[:user_mail])
     @experience.users.push(@user) unless @experience.users.include?(@user)
+    @experience.save
     render json: @experience, include: { users: { only: %i[name mail] } }, except: %i[created_at updated_at]
   end
 

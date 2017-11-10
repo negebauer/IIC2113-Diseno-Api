@@ -9,6 +9,8 @@ class Methood < ApplicationRecord
       new_method = Methood.find_or_create_by(link: method[:url])
       new_method.update(name: method[:name]) if new_method.name.blank?
     end
-    methods
+    Methood.all
+  rescue Net::ReadTimeout, Net::OpenTimeout, Net::HTTP::Persistent::Error
+    Methood.all
   end
 end

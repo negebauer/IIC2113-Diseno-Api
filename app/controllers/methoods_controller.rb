@@ -1,7 +1,6 @@
 class MethoodsController < ApplicationController
   def index
-    Methood.methodologies
-    @methods = Methood.all
+    @methods = Methood.methodologies
     render json: @methods, status: :ok,
            except: %i[created_at updated_at description video]
   end

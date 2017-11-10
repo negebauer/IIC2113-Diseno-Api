@@ -13,13 +13,13 @@ gem 'pg'
 gem 'puma', '~> 3.7'
 gem 'rack-cors'
 gem 'rails', '~> 5.1.3'
+gem 'mechanize'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a
   # debugger console
   gem 'awesome_print'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'mechanize'
   gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 3.6'
   gem 'rspec_junit_formatter'

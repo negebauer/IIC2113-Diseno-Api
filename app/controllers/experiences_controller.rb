@@ -5,7 +5,7 @@ class ExperiencesController < ApplicationController
   # GET /experiences
   # GET /experiences.json
   def index
-    @experiences = Experience.includes(:users).where(users: { id: current_user.id })
+    @experiences = current_user.experiences
     render json: @experiences, include: { users: { only: %i[name mail] } }, except: %i[created_at updated_at]
   end
 

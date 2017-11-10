@@ -473,35 +473,37 @@ TODO
   - Authorization: `Token token=your-session-token`
   - Content-Type: `application/json`
 
-- Success Response:
-
-  - Status: 200
-  - Example Content:
+  - Example Body:
 
     ```javascript
-    [
-      {
-        id: 1,
-        name: 'Mi primera experiencia',
-        date: '2016-08-16T23:13:05.908Z',
-        description: 'En esta experiencia...',
-        users: [
-          {
-            id: 1,
-            name: 'Oscar Rios',
-            username: 'orrios',
-            created_at: '2016-08-16T23:13:05.908Z'
-          }, {
-            id: 2,
-            name: 'Nicolas Gebauer',
-            phone_number: 'negebauer',
-            created_at: '2016-09-16T23:13:15.908Z'
-          }
-        ]
-      },
-        ...
-    ]
+    {
+      applicable: "Not sure",
+      usefulness: "indispensable",
+      relevance: "Important for our experience",
+      feasibility: "feasibility of the selection",
+      experience_id: :experience_id,
+      methood_id: 11,
+    }
     ```
+
+  - Success Response:
+
+    - Status: 200
+    - Example Content:
+
+      ```javascript
+      {
+        id: 15,
+        applicable: "Not sure",
+        usefulness: "indispensable",
+        relevance: "Important for our experience",
+        feasibility: "feasibility of the selection",
+        experience_id: 2,
+        methood_id: 11,
+        created_at: "2017-11-09T21:48:13.953Z",
+        updated_at: "2017-11-09T21:48:13.953Z"
+      }
+      ```
 ---
 #### Update selection for an experience
 
@@ -527,15 +529,15 @@ TODO
 
     ```javascript
     {
-      "id": 15,
-      "applicable": "Not sure",
-      "usefulness": "indispensable",
-      "relevance": "Important for our experience",
-      "feasibility": "feasibility of the selection",
-      "experience_id": 2,
-      "methood_id": 11,
-      "created_at": "2017-11-09T21:48:13.953Z",
-      "updated_at": "2017-11-09T21:48:13.953Z"
+      id: 15,
+      applicable: "Not sure",
+      usefulness: "indispensable",
+      relevance: "Important for our experience",
+      feasibility: "feasibility of the selection",
+      experience_id: 2,
+      methood_id: 11,
+      created_at: "2017-11-09T21:48:13.953Z",
+      updated_at: "2017-11-09T21:48:13.953Z"
     }
     ```
 ---

@@ -9,11 +9,11 @@ end
 
 gem 'bcrypt', '~> 3.1.11'
 gem 'jbuilder', '~> 2.5'
+gem 'mechanize'
 gem 'pg'
 gem 'puma', '~> 3.7'
 gem 'rack-cors'
 gem 'rails', '~> 5.1.3'
-gem 'mechanize'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a

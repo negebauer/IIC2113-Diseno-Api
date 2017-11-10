@@ -1,30 +1,14 @@
 class BlogsController < ApplicationController
-  before_action :set_blog, only: %i[show update destroy]
+  before_action :set_blog, only: %i[show update]
 
-  # GET /blogs
-  # GET /blogs.json
-  def index
-    @blogs = Blog.all
-  end
-
-  # GET /blogs/1
-  # GET /blogs/1.json
-  def show; end
-
-  # POST /blogs
-  # POST /blogs.json
-  def create
-    @blog = Blog.new(blog_params)
-
-    if @blog.save
-      render :show, status: :created, location: @blog
+  def show
+    if @blog
+      render :show, status: :ok
     else
-      render json: @blog.errors, status: :unprocessable_entity
+      render json: { message: 'Blog not found' }, status: :not_found
     end
   end
 
-  # PATCH/PUT /blogs/1
-  # PATCH/PUT /blogs/1.json
   def update
     if @blog.update(blog_params)
       render :show, status: :ok, location: @blog
@@ -33,21 +17,14 @@ class BlogsController < ApplicationController
     end
   end
 
-  # DELETE /blogs/1
-  # DELETE /blogs/1.json
-  def destroy
-    @blog.destroy
-  end
-
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_blog
-    @blog = Blog.find(params[:id])
+    @blog = Blog.find_by(id: params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
   def blog_params
-    params.require(:blog).permit(:implement_id, :day_before, :change, :day_after, :obs, :advances, :obstacles, :ideas)
+    params.require(:blog).permit(:day_before, :change, :day_after, :obs,
+                                 :advances, :obstacles, :ideas)
   end
 end

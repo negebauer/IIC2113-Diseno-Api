@@ -12,6 +12,8 @@ TODO
   - [Accounts And Sessions](#accounts-and-sessions)
   - [Experiences](#experiences)
   - [Methodologies](#methodologies)
+  - [Selections](#selections)
+  - [Implements](#implements)
 
 ## Usage
 
@@ -471,7 +473,6 @@ TODO
 
 - Headers:
   - Authorization: `Token token=your-session-token`
-  - Content-Type: `application/json`
 
   - Example Body:
 
@@ -511,7 +512,6 @@ TODO
 
 - Headers:
   - Authorization: `Token token=your-session-token`
-  - Content-Type: `application/json`
 
 - Example Body:
 
@@ -565,5 +565,174 @@ TODO
 
     ```javascript
     { message: 'Could not delete Selection' }
+    ```
+---
+### Implement
+#### Create a new implement and blog
+
+- Route: `POST` `/implements`
+
+- Headers:
+  - Authorization: `Token token=your-session-token`
+- Example Body:
+
+    ```javascript
+    {
+      implement[plan_id]: 2,
+      implement[blog_attributes[obs]]: 'This is an observation',
+      implement[blog_attributes[obstacles]]: 'Descripcion of the obstacles',
+      implement[blog_attributes[advances]]: 'Write down some advances during the week',
+      implement[blog_attributes[change]]: 'What are your expectations?',
+      implement[blog_attributes[ideas]]: 'Some ideas that you may have during the experience',
+      implement[blog_attributes[day_before]]: '2017-10-16T23:13:05.908Z',
+      implement[blog_attributes[day_after]]: '2017-10-18T23:13:05.908Z',
+    }
+    ```
+- Success Response:
+
+  - Status: 201
+  - Example Content:
+
+    ```javascript
+    {
+      "implement": {
+        "id": 11,
+        "plan_id": 2,
+        "blog": {
+          "id": 4,
+          "day_before": "2017-10-16",
+          "day_after": "2017-10-18",
+          "change": "dsfasdf",
+          "obs": "lalala",
+          "advances": "adsffa",
+          "obstacles": "fsadfsad",
+          "ideas": "afdsaf",
+          "url": "http://localhost:3000/implements/11/blogs/4"
+        }
+      }
+    }
+    ```
+- Error Response:
+  - Code: 406
+  - Content:
+
+    ```javascript
+    { message: 'error-message' }
+    ```
+
+---
+#### Update blog
+
+- Route: `PATCH` `/implements/:implement_id/blog/:id`
+
+- Headers:
+  - Authorization: `Token token=your-session-token`
+
+  - Example Body:
+    - Any of the following attributes
+      ```javascript
+      {
+        implement[blog_attributes[obs]]: 'text',
+        implement[blog_attributes[obstacles]]: 'text',
+        implement[blog_attributes[advances]]: 'text',
+        implement[blog_attributes[change]]: 'text',
+        implement[blog_attributes[ideas]]: 'text',
+        implement[blog_attributes[day_before]]: 'date',
+        implement[blog_attributes[day_after]]: 'date',
+      }
+      ```
+  - Success Response:
+
+    - Status: 201
+    - Example Content:
+
+      ```javascript
+      {
+        "implement": {
+          "id": 11,
+          "plan_id": 2,
+          "blog": {
+            "id": 4,
+            "day_before": "2017-10-16",
+            "day_after": "2017-10-18",
+            "change": "dsfasdf",
+            "obs": "lalala",
+            "advances": "adsffa",
+            "obstacles": "fsadfsad",
+            "ideas": "afdsaf",
+            "url": "http://localhost:3000/implements/11/blogs/4"
+          }
+        }
+      }
+      ```
+  - Error Response:
+    - Code: 406
+    - Content:
+
+      ```javascript
+      { message: 'error-message' }
+      ```
+---
+#### Get blog information
+
+- Route: `POST` `/implement/:implement_id/blog/:id`
+
+- Headers:
+  - Authorization: `Token token=your-session-token`
+  - Content-Type: `application/json`
+
+  - Success Response:
+
+    - Status: 200
+    - Example Content:
+
+      ```javascript
+        {
+          id: 4,
+          implement_id: 11,
+          day_before: "2017-10-16",
+          change: "This need to change!",
+          day_after: "2017-10-18",
+          obs: "Observing",
+          advances: "None",
+          obstacles: "No obstacles",
+          ideas: "Let me think",
+          created_at: "2017-11-10T03:48:38.395Z",
+          updated_at: "2017-11-10T03:48:38.395Z",
+          implement_url: "http://localhost:3000/implements/11"
+        }
+      ```
+  - Error Response:
+    - Code: 404
+    - Content:
+
+      ```javascript
+      { message: 'Blog not found' }
+      ```
+---
+#### Delete implement with blog
+
+- Route: `DELETE` `implements/:id`
+
+- Headers:
+  - Authorization: `Token token=your-session-token`
+  - Content-Type: `application/json`
+
+- Success Response:
+
+  - Status: 200
+  - Content:
+
+    ```javascript
+    { message: 'Implementation deleted successfully' }
+    ```
+
+- Error Response:
+
+  - Code: 406
+  - Content:
+
+    ```javascript
+    { message: 'Implementation could not be deleted' }
     ```
 ---

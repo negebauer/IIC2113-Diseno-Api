@@ -6,8 +6,9 @@ Rails.application.routes.draw do
   resources :suggestions
   resources :questions
   resources :evaluations
-  resources :blogs
-  resources :implements
+  resources :implements, except: %i[index update] do
+    resources :blogs, only: %i[show update]
+  end
   resources :diffusions
   resources :selection_plans
   resources :others

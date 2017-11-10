@@ -161,18 +161,12 @@ TODO
 
 ---
 
-#### Show an experience where i am member
-# TODO
-
----
-
 #### Create Experience
 
 - Route: `POST` `/experiences`
 
 - Headers:
   - Authorization: `Token token=your-session-token`
-  - Content-Type: `application/json`
 
 - Example Body:
 
@@ -217,6 +211,51 @@ TODO
     ```
 
 ---
+#### Update Experience
+
+- Route: `PATCH` `/experiences/:id`
+
+- Headers:
+  - Authorization: `Token token=your-session-token`
+
+- Example Body:
+
+  ```javascript
+  {
+    name: 'Update del nombre',
+    description: 'Y de la descripcion',
+    date: '2017-10-16',
+  }
+  ```
+
+- Success Response:
+
+  - Status: 201
+  - Example Content (Assuming orrios created the experience):
+
+    ```javascript
+    {
+      id: 2,
+      name: 'Update del nombre',
+      description: 'Y de la descripcion',
+      date: '2017-10-16',
+      created_at: '2017-11-09T20:47:41.399Z',
+      updated_at: '2017-11-10T05:05:34.913Z',
+      url: 'http://localhost:3000/experiences/2.json'
+    }
+    ```
+
+
+- Error Response:
+
+  - Code: 406
+  - Content:
+
+    ```javascript
+    { message: 'error-message' }
+    ```
+
+---
 
 
 ### Invite Users To An Experience
@@ -231,7 +270,7 @@ TODO
 
   ```javascript
   {
-    user_mail: "fnmendez@uc.cl"
+    user_mail: 'fnmendez@uc.cl'
   }
   ```
 
@@ -297,13 +336,13 @@ TODO
     [
       {
         id: 1,
-        name: "Cultura de aprendizaje colaborativo",
-        url: "https://www.escuelaenmovimiento.cl/metodologias-innovadoras/cultura-de-aprendizaje-colaborativo"
+        name: 'Cultura de aprendizaje colaborativo',
+        url: 'https://www.escuelaenmovimiento.cl/metodologias-innovadoras/cultura-de-aprendizaje-colaborativo'
     },
     {
         id: 2,
-        name: "Ambientes de Aprendizaje Auto-organizado",
-        url: "https://www.escuelaenmovimiento.cl/metodologias-innovadoras/ambientes-de-aprendizaje-auto-organizado"
+        name: 'Ambientes de Aprendizaje Auto-organizado',
+        url: 'https://www.escuelaenmovimiento.cl/metodologias-innovadoras/ambientes-de-aprendizaje-auto-organizado'
     },
         ...
     ]
@@ -324,8 +363,8 @@ TODO
 
     ```javascript
     [
-      name: "Methodology name",
-      url: "https://www.escuelaenmovimiento.cl/metodologias-innovadoras/metodologia-especifica",
+      name: 'Methodology name',
+      url: 'https://www.escuelaenmovimiento.cl/metodologias-innovadoras/metodologia-especifica',
       id: 1
     ]
     ```
@@ -403,22 +442,22 @@ TODO
     ```javascript
     [
       {
-        "id": 10,
-        "name": "Aprendizaje basado en proyectos interdisciplinarios",
-        "description": null,
-        "video": null,
-        "link": "https://www.escuelaenmovimiento.cl/metodologias-innovadoras/aprendizaje-basado-en-proyectos-interdisciplinarios",
-        "created_at": "2017-11-09T14:56:11.665Z",
-        "updated_at": "2017-11-09T14:56:16.807Z"
+        'id': 10,
+        'name': 'Aprendizaje basado en proyectos interdisciplinarios',
+        'description': null,
+        'video': null,
+        'link': 'https://www.escuelaenmovimiento.cl/metodologias-innovadoras/aprendizaje-basado-en-proyectos-interdisciplinarios',
+        'created_at': '2017-11-09T14:56:11.665Z',
+        'updated_at': '2017-11-09T14:56:16.807Z'
       },
       {
-        "id": 11,
-        "name": "Cultura de aprendizaje colaborativo",
-        "description": null,
-        "video": null,
-        "link": "https://www.escuelaenmovimiento.cl/metodologias-innovadoras/cultura-de-aprendizaje-colaborativo",
-        "created_at": "2017-11-09T14:56:16.669Z",
-        "updated_at": "2017-11-09T14:56:16.758Z"
+        'id': 11,
+        'name': 'Cultura de aprendizaje colaborativo',
+        'description': null,
+        'video': null,
+        'link': 'https://www.escuelaenmovimiento.cl/metodologias-innovadoras/cultura-de-aprendizaje-colaborativo',
+        'created_at': '2017-11-09T14:56:16.669Z',
+        'updated_at': '2017-11-09T14:56:16.758Z'
       }
     ]
     ```
@@ -440,26 +479,26 @@ TODO
     ```javascript
     [
       {
-        "id": 1,
-        "applicable": "Si",
-        "usefulness": "Not so much",
-        "relevance": "a lot",
-        "feasibility": null,
-        "experience_id": 2,
-        "methood_id": 10,
-        "created_at": "2017-11-09T20:57:25.304Z",
-        "updated_at": "2017-11-09T20:57:25.304Z"
+        'id': 1,
+        'applicable': 'Si',
+        'usefulness': 'Not so much',
+        'relevance': 'a lot',
+        'feasibility': null,
+        'experience_id': 2,
+        'methood_id': 10,
+        'created_at': '2017-11-09T20:57:25.304Z',
+        'updated_at': '2017-11-09T20:57:25.304Z'
       },
       {
-        "id": 15,
-        "applicable": "No",
-        "usefulness": "Very useful",
-        "relevance": "Important for our experience",
-        "feasibility": "feasibility of the selection",
-        "experience_id": 2,
-        "methood_id": 11,
-        "created_at": "2017-11-09T21:48:13.953Z",
-        "updated_at": "2017-11-09T21:48:13.953Z"
+        'id': 15,
+        'applicable': 'No',
+        'usefulness': 'Very useful',
+        'relevance': 'Important for our experience',
+        'feasibility': 'feasibility of the selection',
+        'experience_id': 2,
+        'methood_id': 11,
+        'created_at': '2017-11-09T21:48:13.953Z',
+        'updated_at': '2017-11-09T21:48:13.953Z'
       }
     ]
     ```
@@ -477,10 +516,10 @@ TODO
 
     ```javascript
     {
-      applicable: "Not sure",
-      usefulness: "indispensable",
-      relevance: "Important for our experience",
-      feasibility: "feasibility of the selection",
+      applicable: 'Not sure',
+      usefulness: 'indispensable',
+      relevance: 'Important for our experience',
+      feasibility: 'feasibility of the selection',
       experience_id: :experience_id,
       methood_id: 11,
     }
@@ -494,14 +533,14 @@ TODO
       ```javascript
       {
         id: 15,
-        applicable: "Not sure",
-        usefulness: "indispensable",
-        relevance: "Important for our experience",
-        feasibility: "feasibility of the selection",
+        applicable: 'Not sure',
+        usefulness: 'indispensable',
+        relevance: 'Important for our experience',
+        feasibility: 'feasibility of the selection',
         experience_id: 2,
         methood_id: 11,
-        created_at: "2017-11-09T21:48:13.953Z",
-        updated_at: "2017-11-09T21:48:13.953Z"
+        created_at: '2017-11-09T21:48:13.953Z',
+        updated_at: '2017-11-09T21:48:13.953Z'
       }
       ```
 ---
@@ -517,8 +556,8 @@ TODO
 
   ```javascript
   {
-    applicable: "Not sure",
-    usefulness: "indispensable"
+    applicable: 'Not sure',
+    usefulness: 'indispensable'
   }
   ```
 
@@ -530,14 +569,14 @@ TODO
     ```javascript
     {
       id: 15,
-      applicable: "Not sure",
-      usefulness: "indispensable",
-      relevance: "Important for our experience",
-      feasibility: "feasibility of the selection",
+      applicable: 'Not sure',
+      usefulness: 'indispensable',
+      relevance: 'Important for our experience',
+      feasibility: 'feasibility of the selection',
       experience_id: 2,
       methood_id: 11,
-      created_at: "2017-11-09T21:48:13.953Z",
-      updated_at: "2017-11-09T21:48:13.953Z"
+      created_at: '2017-11-09T21:48:13.953Z',
+      updated_at: '2017-11-09T21:48:13.953Z'
     }
     ```
 ---

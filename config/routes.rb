@@ -13,9 +13,12 @@ Rails.application.routes.draw do
     patch '/plan', to: 'plans#update'
   end
   post '/experiences/:id/users', to: 'experiences#invite'
-  resources :users, except: %i[create index show]
+  resources :users, except: %i[create index]
   get '/profile', to: 'profile#index'
   post '/signup', to: 'users#create'
   post   '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
+  namespace :admin do
+    resources :users, only: %i[index update]
+  end
 end

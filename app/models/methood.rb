@@ -1,6 +1,6 @@
 class Methood < ApplicationRecord
   validates :link, presence: true, uniqueness: true
-  has_many :selections
+  has_many :selections, dependent: :destroy
   has_many :experiences, through: :selections
 
   def self.methodologies

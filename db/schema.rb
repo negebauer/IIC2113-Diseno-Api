@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_171_019_220_237) do
+ActiveRecord::Schema.define(version: 20_171_110_042_311) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -36,12 +36,18 @@ ActiveRecord::Schema.define(version: 20_171_019_220_237) do
   end
 
   create_table 'diffusions', force: :cascade do |t|
-    t.text 'before'
-    t.text 'during'
-    t.text 'after'
     t.bigint 'plan_id'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+    t.text 'audience_before'
+    t.text 'channel_before'
+    t.text 'objective_before'
+    t.text 'audience_during'
+    t.text 'channel_during'
+    t.text 'objective_during'
+    t.text 'audience_after'
+    t.text 'channel_after'
+    t.text 'objective_after'
     t.index ['plan_id'], name: 'index_diffusions_on_plan_id'
   end
 
@@ -67,6 +73,17 @@ ActiveRecord::Schema.define(version: 20_171_019_220_237) do
     t.datetime 'updated_at', null: false
     t.index ['experience_id'], name: 'index_experiences_users_on_experience_id'
     t.index ['user_id'], name: 'index_experiences_users_on_user_id'
+  end
+
+  create_table 'goals', force: :cascade do |t|
+    t.string 'name'
+    t.string 'description'
+    t.string 'when'
+    t.string 'how'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.bigint 'plan_id'
+    t.index ['plan_id'], name: 'index_goals_on_plan_id'
   end
 
   create_table 'implements', force: :cascade do |t|
@@ -113,12 +130,10 @@ ActiveRecord::Schema.define(version: 20_171_019_220_237) do
   end
 
   create_table 'plans', force: :cascade do |t|
-    t.text 'reasons'
-    t.text 'period'
-    t.string 'name'
-    t.text 'objetive'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+    t.bigint 'experience_id'
+    t.index ['experience_id'], name: 'index_plans_on_experience_id'
   end
 
   create_table 'questions', force: :cascade do |t|
@@ -134,8 +149,8 @@ ActiveRecord::Schema.define(version: 20_171_019_220_237) do
 
   create_table 'resources', force: :cascade do |t|
     t.string 'name'
-    t.text 'support'
-    t.boolean 'disponibility'
+    t.text 'how'
+    t.boolean 'available'
     t.bigint 'plan_id'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
@@ -154,6 +169,7 @@ ActiveRecord::Schema.define(version: 20_171_019_220_237) do
     t.bigint 'selection_id'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+    t.string 'reasons'
     t.index ['plan_id'], name: 'index_selection_plans_on_plan_id'
     t.index ['selection_id'], name: 'index_selection_plans_on_selection_id'
   end
@@ -202,10 +218,12 @@ ActiveRecord::Schema.define(version: 20_171_019_220_237) do
   add_foreign_key 'evaluations', 'implements'
   add_foreign_key 'experiences_users', 'experiences'
   add_foreign_key 'experiences_users', 'users'
+  add_foreign_key 'goals', 'plans'
   add_foreign_key 'implements', 'plans'
   add_foreign_key 'members', 'plans'
   add_foreign_key 'others', 'plans'
   add_foreign_key 'places', 'plans'
+  add_foreign_key 'plans', 'experiences'
   add_foreign_key 'questions', 'evaluations'
   add_foreign_key 'resources', 'plans'
   add_foreign_key 'satisfactions', 'evaluations'

@@ -11,6 +11,8 @@ Metrics/BlockLength:
     - "db/migrate/*"
     - "db/**"
     - "config/routes.rb"
+    - "app/views/plans/show.json.jbuilder"
+    - "app/controllers/plans_controller.rb"
 
 Metrics/MethodLength:
   Exclude:
@@ -18,6 +20,8 @@ Metrics/MethodLength:
     - "db/schema.rb"
     - "db/migrate/*"
     - "db/**"
+    - "app/controllers/plans_controller.rb"
+    - "app/views/plans/show.json.jbuilder"
 
 Metrics/LineLength:
   Max: 140
@@ -25,4 +29,7 @@ Documentation:
     Enabled: false
 
 Rails/HasAndBelongsToMany:
+  Enabled: false
+
+Rails/ReversibleMigration:
   Enabled: false

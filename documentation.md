@@ -14,6 +14,11 @@ TODO
   - [Methodologies](#methodologies)
   - [Selections](#selections)
   - [Implements](#implements)
+  - [Plans](#plans)
+    - [Create a plan](#create-a-plan)
+    - [Update child models](#update-child-models)
+    - [Delete child models](#delete-child-models)
+    - [Get a plan](#get-a-plan)
 
 ## Usage
 
@@ -735,4 +740,155 @@ TODO
     ```javascript
     { message: 'Implementation could not be deleted' }
     ```
+---
+
+### Plans
+
+* Plan endpoint is build to also manage selection_plans, resources, goals and a
+diffusion
+* You can set an arbitrary amount of them **(except diffusion)**, and any can be
+omitted
+* To edit any of the models, just include its id (in any success response you'll
+get them)
+* To destroy any of the models, just include its id and `_destroy` special key
+evaluating to true
+* Success response is the same for each method so it is shown at the end of
+this section in the GET method
+
+Notes:
+* It isn't possible to mix creation and updates
+  * For example, to create a goal and update a resource
+* Diffusion isn't destroyable and _at least_ a selection_plan _should_ exist
+
+#### Create a Plan
+
+Use this endpoint only the first time
+
+- Route: `POST` `/experiences/:experience_id/plan`
+
+- Headers:
+  - Authorization: `Token token=your-session-token`
+  - Content-Type: `application/json`
+
+- Example Body:
+
+  ```javascript
+  {
+  	"plan": {
+  		"selection_plans_attributes":
+      [
+  			{"reasons": "It is perfect", "selection_id": 1},
+  			{"reasons": "May work", "selection_id": 2}
+  		],
+  		"goals_attributes":
+      [
+  			{"name": "Conquer the world", "how": "With software development", "when": "Now", "description": "To conquer the world is the best goal to achieve"},
+  			{"name": "Something", "how": "somehow", "when": "tomorrow", "description": "some description"}
+  		],
+  		"resources_attributes":
+      [
+  			{"name": "Tablets for each student", "how": "somehow", "available": true},
+  			{"name": "Microphone", "how": "somehow", "available": false}
+  		],
+  		"diffusion_attributes":
+      {
+  			"audience_before": "maybe this will be set this first time",
+        "channel_before": "this too",
+        "objective_before": "this too",
+  			"audience_during": "this will be get edited",
+  			"objective_during": "etc.",
+        "channel_during": "",
+        "channel_after": "",
+        "audience_after": "",
+        "objective_after": ""
+  		}
+  	}
+  }
+  ```
+
+---
+
+#### Update child models
+
+- Route: `PATCH` `/experiences/:experience_id/plan`
+
+- Headers:
+  - Authorization: `Token token=your-session-token`
+  - Content-Type: `application/json`
+
+- Example Body:
+
+  ```javascript
+  {
+  	"plan": {
+  		"selection_plans_attributes":
+      [
+  			{"id": 1, "reasons": "It isn't perfect at all, just great", "selection_id": 1}
+  		],
+  		"resources_attributes":
+      [
+  			{"id": 2, "name": "Microphone", "how": "somehow", "available": true}
+  		],
+  		"diffusion_attributes":
+      {
+        "id": 1,
+  			"audience_during": "all the students of the school",
+  			"objective_during": "teach"
+  		}
+  	}
+  }
+  ```
+
+---
+
+#### Delete child models
+
+- Route: `PATCH` `/experiences/:experience_id/plan`
+
+- Headers:
+  - Authorization: `Token token=your-session-token`
+  - Content-Type: `application/json`
+
+- Example Body:
+
+  ```javascript
+  {
+  	"plan": {
+  		"selection_plans_attributes":
+      [
+  			{"id": 1, "_destroy": true},
+  		],
+  	}
+  }
+  ```
+
+---
+
+#### Get a plan
+
+- Route: `GET` `/experiences/:experience_id/plan`
+
+- Headers:
+  - Authorization: `Token token=your-session-token`
+  - Content-Type: `application/json`
+
+- Success Response:
+
+  - Status: 200
+  - Example content:
+
+    ```javascript
+
+    ```
+
+
+- Error Response:
+
+  - Code: 406
+  - Content:
+
+    ```javascript
+    { message: 'error-message' }
+    ```
+
 ---

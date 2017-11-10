@@ -1,5 +1,7 @@
 class Methood < ApplicationRecord
   validates :link, presence: true, uniqueness: true
+  has_many :selections
+  has_many :experiences, through: :selections
 
   def self.methodologies
     methods = MethodUpdater::MethodUpdater.methodologies

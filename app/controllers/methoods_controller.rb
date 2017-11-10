@@ -19,7 +19,7 @@ class MethoodsController < ApplicationController
   def selected
     @experience = Experience.find_by(id: params[:experience_id])
     if @experience
-      render :json, status: :ok, expect: %i[created_at updated_at video]
+      render :selected, status: :ok
     else
       render json: { message: 'Experience not found' }, status: :not_found
     end

@@ -5,7 +5,7 @@ class SelectionsController < ApplicationController
 
   def index
     @selections = @experience.selections
-    render json: @selections, status: :ok
+    render :index, status: :ok
   end
 
   def create
